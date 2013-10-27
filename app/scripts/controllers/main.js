@@ -2,7 +2,7 @@
 
 angular.module('angularRealTimeChartsApp')
   .controller('MainCtrl', function ($scope) {
-    $scope.gaugeValue = 1;
+    $scope.gaugeValue = 0;
 
     var sock = new SockJS('/sockjs');
     sock.onopen = function() {
