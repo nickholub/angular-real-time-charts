@@ -23,22 +23,27 @@ if ('production' == app.get('env')) {
 
 var clients = {};
 var clientCount = 0;
+var interval;
 
 var gaugeValue = 40;
 
 function broadcast() {
   gaugeValue += Math.random() * 10 - 5;
   gaugeValue = gaugeValue < 0 ? 0 : gaugeValue > 100 ? 100 : gaugeValue;
+  var time = Date.now();
 
   for (var key in clients) {
     if(clients.hasOwnProperty(key)) {
-      clients[key].write(JSON.stringify({ value: Math.floor(gaugeValue) }));
+      clients[key].write(JSON.stringify({ value: Math.floor(gaugeValue), timestamp: time }));
     }
   }
+
+  //setTimeout(broadcast, 1000);
 }
 
 function startBroadcast () {
-  setInterval(broadcast, 1000);
+  interval = setInterval(broadcast, 1000);
+  //broadcast();
 }
 
 var sockjsServer = sockjs.createServer();
@@ -54,6 +59,9 @@ sockjsServer.on('connection', function(conn) {
   conn.on('close', function() {
     clientCount--;
     delete clients[conn.id];
+    if (clientCount === 0) {
+      clearInterval(interval);
+    }
   });
 });
 
