@@ -57,23 +57,6 @@ sockjsServer.on('connection', function(conn) {
   });
 });
 
-
-var sockjsServer = sockjs.createServer();
-
-sockjsServer.on('connection', function(conn) {
-  clientCount++;
-  if (clientCount === 1) {
-    startBroadcast();
-  }
-
-  clients[conn.id] = conn;
-
-  conn.on('close', function() {
-    clientCount--;
-    delete clients[conn.id];
-  });
-});
-
 var server = http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
 });
