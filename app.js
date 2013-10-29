@@ -25,10 +25,10 @@ var clients = {};
 var clientCount = 0;
 var interval;
 
-var gaugeValue = 40;
+var gaugeValue = 50;
 
 function broadcast() {
-  gaugeValue += Math.random() * 10 - 5;
+  gaugeValue += Math.random() * 40 - 20;
   gaugeValue = gaugeValue < 0 ? 0 : gaugeValue > 100 ? 100 : gaugeValue;
   var time = Date.now();
 

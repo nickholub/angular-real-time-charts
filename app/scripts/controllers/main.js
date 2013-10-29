@@ -9,18 +9,21 @@ angular.module('angularRealTimeChartsApp')
       //console.log('open');
     };
 
-    var last = { timestamp: 0 }; //TODO display last timestamp
+    var items = [];
 
     sock.onmessage = function(e) {
-      var data = JSON.parse(e.data);
-      var diff = data.timestamp - last.timestamp;
-      //console.log(diff);
-      last = data;
-      $scope.gaugeValue = data.value;
+      var item = JSON.parse(e.data);
+
+      items.push(item);
+
+      if (items.length > 100) {
+        items.shift();
+      }
+
+      $scope.chart = {
+        data: items
+      };
+      $scope.gaugeValue = item.value;
       $scope.$apply();
     };
-    sock.onclose = function() {
-      //console.log('close');
-    };
-
   });

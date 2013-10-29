@@ -3,4 +3,5 @@ dist
 .tmp
 .sass-cache
 .idea
+.DS_Store
 app/bower_components

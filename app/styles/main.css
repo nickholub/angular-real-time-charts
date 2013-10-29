@@ -16,7 +16,6 @@ body {
 }
 
 body {
-    background: #fafafa;
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
     color: #333;
 }
@@ -36,4 +35,12 @@ body {
     font-size: 60px;
     line-height: 1;
     letter-spacing: -1px;
+}
+
+.line-chart {
+    height: 400px;
+}
+
+.gauge {
+    margin-top: 80px;
 }
