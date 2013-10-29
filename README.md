@@ -1,7 +1,13 @@
 angular-real-time-charts
 ========================
 
-Real Time Charts with AngularJS and D3.js.
+Real Time Charts with AngularJS.
+
+## AngularJS directives
+
+ Line Chart with Google Charts
+
+ Gauge with D3.js
 
 ## Usage
 
@@ -24,6 +30,8 @@ Real Time Charts with AngularJS and D3.js.
  [AngularJS](http://angularjs.org/) JavaScript MVC Framework
 
  [D3](https://github.com/mbostock/d3) JavaScript Data Visualization library
+
+ [Google Charts](https://developers.google.com/chart/) Charts by Google
 
  [sockjs-node](https://github.com/sockjs/sockjs-node) Node.js WebSocket server
 
