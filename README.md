@@ -3,6 +3,8 @@ angular-real-time-charts
 
 Real Time Charts with AngularJS.
 
+![Real Time Charts](doc/realtimecharts.png "Real Time Charts")
+
 ## AngularJS directives
 
  Line Chart with Google Charts
