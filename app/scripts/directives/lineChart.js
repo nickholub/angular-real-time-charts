@@ -10,9 +10,11 @@ angular.module('angularRealTimeChartsApp')
       restrict: 'E',
       replace: true,
       link: function postLink(scope, element, attrs) {
-        var chart = new google.visualization.LineChart(element[0]);
+        var lineChart = new google.visualization.LineChart(element[0]);
 
-        function draw(data) {
+        function draw(chart) {
+          var data = chart.data;
+
           var table = new google.visualization.DataTable();
           table.addColumn('datetime');
           table.addColumn('number');
@@ -29,7 +31,7 @@ angular.module('angularRealTimeChartsApp')
 
           var last = data[data.length - 1];
           var max = new Date(last.timestamp);
-          var min = new Date(last.timestamp - 30 * 1000);
+          var min = new Date(last.timestamp - chart.max * 1000);
 
           var chartOptions = {
             legend: 'none',
@@ -37,12 +39,12 @@ angular.module('angularRealTimeChartsApp')
             hAxis: { viewWindow: { min: min, max: max }}
           };
 
-          chart.draw(view, chartOptions);
+          lineChart.draw(view, chartOptions);
         }
 
         scope.$watch('chart', function (chart) {
-          if (chart && chart.data) {
-            draw(chart.data);
+          if (chart && chart.data && chart.max) {
+            draw(chart);
           }
         });
       }

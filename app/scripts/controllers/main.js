@@ -9,6 +9,7 @@ angular.module('angularRealTimeChartsApp')
       //console.log('open');
     };
 
+    var maxItems = 30;
     var items = [];
 
     sock.onmessage = function(e) {
@@ -16,12 +17,13 @@ angular.module('angularRealTimeChartsApp')
 
       items.push(item);
 
-      if (items.length > 100) {
+      if (items.length > maxItems) {
         items.shift();
       }
 
       $scope.chart = {
-        data: items
+        data: items,
+        max: maxItems
       };
       $scope.gaugeValue = item.value;
       $scope.$apply();
