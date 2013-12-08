@@ -3,19 +3,17 @@
 angular.module('app.service', ['ng']);
 
 angular.module('app.service')
+  .value('webSocketObject', null) // for testing only
+
   .provider('webSocket', function () {
 
     var socketURL;
 
     return {
-      $get: function($q) {
-        if (!socketURL) {
-          throw "WebSocket URL is not defined";
-        }
-
+      $get: function($q, webSocketObject) {
         var deferred = $q.defer();
 
-        var socket = new WebSocket(socketURL);
+        var socket = !webSocketObject ? new WebSocket(socketURL) : webSocketObject;
 
         socket.onopen = function() {
           deferred.resolve();
