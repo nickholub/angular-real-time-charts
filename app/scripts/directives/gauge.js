@@ -4,7 +4,9 @@
 
 'use strict';
 
-angular.module('angularRealTimeChartsApp')
+angular.module('app.directive', []);
+
+angular.module('app.directive')
   .directive('gauge', function () {
     return {
       restrict: 'E',

@@ -3,7 +3,7 @@
 describe('Directive: gauge', function () {
 
   // load the directive's module
-  beforeEach(module('angularRealTimeChartsApp'));
+  beforeEach(module('app'));
 
   var element,
     scope;

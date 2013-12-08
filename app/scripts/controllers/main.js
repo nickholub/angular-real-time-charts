@@ -1,19 +1,14 @@
 'use strict';
 
-angular.module('angularRealTimeChartsApp')
-  .controller('MainCtrl', function ($scope) {
-    $scope.gaugeValue = 0;
+angular.module('app.controller', []);
 
-    var sock = new SockJS('/sockjs');
-    sock.onopen = function() {
-      //console.log('open');
-    };
+angular.module('app.controller')
+  .controller('MainCtrl', function ($scope, webSocket) {
+    $scope.gaugeValue = 0;
 
     var items = [];
 
-    sock.onmessage = function(e) {
-      var item = JSON.parse(e.data);
-
+    webSocket.subscribe(function (item) {
       items.push(item);
 
       if (items.length > 40) {
@@ -24,7 +19,8 @@ angular.module('angularRealTimeChartsApp')
         data: items,
         max: 30
       };
+
       $scope.gaugeValue = item.value;
       $scope.$apply();
-    };
+    });
   });

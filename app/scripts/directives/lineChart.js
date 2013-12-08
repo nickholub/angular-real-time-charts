@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('angularRealTimeChartsApp')
+angular.module('app.directive')
   .directive('lineChart', function ($timeout) {
     return {
       template: '<div></div>',
