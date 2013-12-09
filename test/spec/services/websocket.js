@@ -4,25 +4,24 @@ describe('Service: webSocket', function () {
 
   var webSocketObject;
   var webSocket;
-  var listener1;
-  var listener2;
 
-  beforeEach(module('app.service', function($provide) {
+  beforeEach(module('app.service', function(webSocketProvider) {
     webSocketObject = {
       send: function () {}
     };
 
-    $provide.value('webSocketObject', webSocketObject);
+    webSocketProvider.setWebSocketObject(webSocketObject);
   }));
 
   beforeEach(inject(function (_webSocket_) {
     webSocket = _webSocket_;
-    listener1 = jasmine.createSpy();
-    listener2 = jasmine.createSpy();
   }));
 
   it('should notify subscribers', function () {
     expect(webSocketObject.onmessage).toBeDefined();
+
+    var listener1 = jasmine.createSpy();
+    var listener2 = jasmine.createSpy();
 
     webSocket.subscribe(listener1);
     webSocket.subscribe(listener2);

@@ -3,17 +3,20 @@
 angular.module('app.service', ['ng']);
 
 angular.module('app.service')
-  .value('webSocketObject', null) // for testing only
-
   .provider('webSocket', function () {
 
-    var socketURL;
+    var webSocketURL;
+    var webSocketObject; // for testing only
 
     return {
-      $get: function($q, webSocketObject) {
-        var deferred = $q.defer();
+      $get: function($q) {
+        if (!webSocketURL && !webSocketObject) {
+          throw 'WebSocket URL is not defined';
+        }
 
-        var socket = !webSocketObject ? new WebSocket(socketURL) : webSocketObject;
+        var socket = !webSocketObject ? new WebSocket(webSocketURL) : webSocketObject;
+
+        var deferred = $q.defer();
 
         socket.onopen = function() {
           deferred.resolve();
@@ -41,8 +44,12 @@ angular.module('app.service')
         };
       },
 
-      setWebSocketURL: function(webSocketURL) {
-        socketURL = webSocketURL;
+      setWebSocketURL: function(wsURL) {
+        webSocketURL = wsURL;
+      },
+
+      setWebSocketObject: function(wsObject) {
+        webSocketObject = wsObject;
       }
     };
   });
