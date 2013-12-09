@@ -12,10 +12,10 @@ angular.module('app.directive')
       restrict: 'E',
       replace: true,
       scope: {
-        label: "@",
-        min: "=",
-        max: "=",
-        value: "="
+        label: '@',
+        min: '=',
+        max: '=',
+        value: '='
       },
       link: function postLink(scope, element, attrs) {
         var config = {

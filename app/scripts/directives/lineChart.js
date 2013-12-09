@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('app.directive')
-  .directive('lineChart', function ($timeout) {
+  .directive('lineChart', function () {
     return {
       template: '<div></div>',
       scope: {
@@ -9,7 +9,7 @@ angular.module('app.directive')
       },
       restrict: 'E',
       replace: true,
-      link: function postLink(scope, element, attrs) {
+      link: function postLink(scope, element) {
         var lineChart = new google.visualization.LineChart(element[0]);
 
         function draw(chart) {
