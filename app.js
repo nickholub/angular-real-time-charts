@@ -32,9 +32,11 @@ function broadcast() {
   gaugeValue = gaugeValue < 0 ? 0 : gaugeValue > 100 ? 100 : gaugeValue;
   var time = Date.now();
 
+  var message = JSON.stringify({ value: Math.floor(gaugeValue), timestamp: time });
+
   for (var key in clients) {
     if(clients.hasOwnProperty(key)) {
-      clients[key].write(JSON.stringify({ value: Math.floor(gaugeValue), timestamp: time }));
+      clients[key].write(message);
     }
   }
 
