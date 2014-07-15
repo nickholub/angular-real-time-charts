@@ -1,8 +1,6 @@
 angular-real-time-charts
 ========================
 
-[![Build Status](https://travis-ci.org/nickholub/angular-real-time-charts.svg)](https://travis-ci.org/nickholub/angular-real-time-charts)
-
 Real Time Charts with AngularJS.
 
 ![Real Time Charts](doc/realtimecharts.png "Real Time Charts")
